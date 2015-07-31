@@ -16,9 +16,9 @@ Route::get('/', function () {
 });
 
 // Declaración de ruta convencional
-Route::get('/mundo', function () {
-    return "¡Hola Mundo!";
-});
+Route::get('/hola-mundo', 'Controlador@holaMundo');
+
+Route::resource('/libros', 'RESTController');
 
 // Declaración de ruta con parámetro
 Route::get('/hola/{usuario}', function ($usuario) {
