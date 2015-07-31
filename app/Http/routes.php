@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 // Declaración de ruta convencional
-Route::get('/mundo', function () {
+Route::get('/hola-mundo', function () {
     return "¡Hola Mundo!";
 });
 
