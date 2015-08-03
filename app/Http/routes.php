@@ -18,7 +18,6 @@ Route::get('/', function () {
 // Declaración de ruta convencional
 Route::get('/hola-mundo', 'Controlador@holaMundo');
 
-Route::resource('/libros', 'RESTController');
 
 // Declaración de ruta con parámetro
 Route::get('/hola/{usuario}', function ($usuario) {
@@ -43,6 +42,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/libros', function () {
         return "Esta es la sección de libros";
     });
+    
+    // Route::resource('/libros', 'RESTController');
 
     Route::get('/usuarios', function() {
         return "Esta es la sección de usuarios";

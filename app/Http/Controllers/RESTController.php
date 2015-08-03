@@ -27,7 +27,7 @@ class RESTController extends Controller
      */
     public function index()
     {
-        return $this->libros;
+        return view('libros.index')->with('libros', $this->libros);        
     }
 
     /**
@@ -37,7 +37,7 @@ class RESTController extends Controller
      */
     public function create()
     {
-        
+        return view('libros.create');   
     }
 
     /**
@@ -48,7 +48,12 @@ class RESTController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $libro = [
+            'titulo' => $request->input('titulo'),
+            'autor' => $request->input('autor')
+        ];
+        $this->libros[] = $libro;
+        return view('libros.index')->with('libros', $this->libros);
     }
 
     /**
@@ -59,7 +64,11 @@ class RESTController extends Controller
      */
     public function show($id)
     {
-        //
+        $context = [
+            'id' => $id,
+            'libro' => $this->libros[$id]
+        ];
+        return view('libros.show', $context);
     }
 
     /**
@@ -70,7 +79,11 @@ class RESTController extends Controller
      */
     public function edit($id)
     {
-        //
+        $context = [
+            'id' => $id,
+            'libro' => $this->libros[$id]
+        ];
+        return view('libros.edit', $context);
     }
 
     /**
@@ -82,7 +95,11 @@ class RESTController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $libro = $this->libros[$id];
+        $libro['titulo'] = $request->input('titulo');
+        $libro['autor'] = $request->input('autor');
+        $this->libros[$id] = $libro;
+        return view('libros.index')->with('libros', $this->libros);
     }
 
     /**
@@ -93,6 +110,7 @@ class RESTController extends Controller
      */
     public function destroy($id)
     {
-        //
+        unset($this->libros[$id]);
+        return view('libros.index')->with('libros', $this->libros);
     }
 }
