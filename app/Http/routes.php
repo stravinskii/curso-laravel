@@ -18,11 +18,13 @@ Route::get('/', function () {
 // Declaración de ruta convencional
 Route::get('/hola-mundo', function () {
     return "¡Hola Mundo!";
+    // return view('hola.mundo');
 });
 
 // Declaración de ruta con parámetro
 Route::get('/hola/{usuario}', function ($usuario) {
     return "¡Hola {$usuario}!";
+    // return view('hola.usuario', ['usuario' => $usuario]);
 });
 
 // Declaración de ruta con parámetro opcional
