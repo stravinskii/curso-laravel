@@ -39,11 +39,13 @@ Route::get('/numero/{numero?}', function ($numero = null) {
 // Declaración de un grupo de rutas
 // Nota: Las rutas se cazan de arriba a abajo
 Route::group(['prefix' => 'admin'], function () {
-    Route::get('/libros', function () {
-        return "Esta es la sección de libros";
-    });
+    // Route::get('/libros', function () {
+    //     return "Esta es la sección de libros";
+    // });
+
+    Route::get('/libros/search', 'RESTController@search');
     
-    // Route::resource('/libros', 'RESTController');
+    Route::resource('/libros', 'RESTController');
 
     Route::get('/usuarios', function() {
         return "Esta es la sección de usuarios";

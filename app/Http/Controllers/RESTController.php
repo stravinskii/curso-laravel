@@ -4,22 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Libro;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class RESTController extends Controller
 {
-    private $libros = [
-        ['titulo' => '100 años de soledad', 
-        'autor' => 'Gabriel García Márquez'],
-
-        ['titulo' => 'Ensayo sobre la ceguera', 
-        'autor' => 'José Saramago'],
-
-        ['titulo' => 'Las batallas en el desierto', 
-        'autor' => 'José Emilio Pacheco'],
-    ];
-
     /**
      * Display a listing of the resource.
      *
@@ -27,7 +17,7 @@ class RESTController extends Controller
      */
     public function index()
     {
-        return view('libros.index')->with('libros', $this->libros);        
+        return view('libros.index')->with('libros', Libro::all());        
     }
 
     /**
@@ -48,12 +38,12 @@ class RESTController extends Controller
      */
     public function store(Request $request)
     {
-        $libro = [
-            'titulo' => $request->input('titulo'),
-            'autor' => $request->input('autor')
-        ];
-        $this->libros[] = $libro;
-        return view('libros.index')->with('libros', $this->libros);
+        $libro = new Libro;
+        // $libro->ISBN = $request->input('isbn');
+        $libro->titulo = $request->input('titulo');
+        $libro->autor = $request->input('autor');
+        $libro->save();
+        return view('libros.index')->with('libros', Libro::all());
     }
 
     /**
@@ -64,11 +54,7 @@ class RESTController extends Controller
      */
     public function show($id)
     {
-        $context = [
-            'id' => $id,
-            'libro' => $this->libros[$id]
-        ];
-        return view('libros.show', $context);
+        return view('libros.show')->with('libro', Libro::find($id));
     }
 
     /**
@@ -79,11 +65,7 @@ class RESTController extends Controller
      */
     public function edit($id)
     {
-        $context = [
-            'id' => $id,
-            'libro' => $this->libros[$id]
-        ];
-        return view('libros.edit', $context);
+        return view('libros.edit')->with('libro', Libro::find($id));;
     }
 
     /**
@@ -95,11 +77,14 @@ class RESTController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $libro = $this->libros[$id];
-        $libro['titulo'] = $request->input('titulo');
-        $libro['autor'] = $request->input('autor');
-        $this->libros[$id] = $libro;
-        return view('libros.index')->with('libros', $this->libros);
+
+        $libro = Libro::find($id);
+        // $libro->ISBN = $request->input('isbn');
+        $libro->titulo = $request->input('titulo');
+        $libro->autor = $request->input('autor');
+        $libro->save();
+
+        return view('libros.index')->with('libros', Libro::all());
     }
 
     /**
@@ -110,7 +95,21 @@ class RESTController extends Controller
      */
     public function destroy($id)
     {
-        unset($this->libros[$id]);
-        return view('libros.index')->with('libros', $this->libros);
+        Libro::find($id)->delete();
+        return view('libros.index')->with('libros', Libro::all());
+    }
+
+    /**
+     * Searches for resources with specified criteria
+     *
+     * @return Response
+     */
+    public function search(Request $request)
+    {
+        $libros = Libro::where('titulo', $request->input('titulo'))
+            ->orWhere('autor', $request->input('autor'))
+            // ->orWhere('ISBN', $request->input('isbn'))
+            ->get();
+        return view('libros.index')->with('libros', $libros);
     }
 }
