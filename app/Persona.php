@@ -49,4 +49,27 @@ class Persona extends Model
         ];
         return implode(' ', $atributos);
     }
+
+    /**
+     * Define un 'accessor' para el atributo de nombre
+     * Dandole formato cada que utilizamos el atributo
+     *
+     * @param nombre - el atributo a modificar
+     * @return string
+     */
+    public function getNombreAttribute($nombre)
+    {
+        return ucwords($nombre);
+    }
+
+    /**
+     * Define un 'mutator' que modificará un valor del modelo
+     * cada vez que intentemos guardarlo en la base de datos
+     *
+     * @param apellido_paterno - el atributo a modificar
+     */
+    public function setApellidoPaternoAttribute($apellido_paterno)
+    {
+        $this->attributes['apellido_paterno'] = ucwords($apellido_paterno);
+    }
 }
