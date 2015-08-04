@@ -7,18 +7,33 @@ use Illuminate\Database\Eloquent\Model;
 class Libro extends Model
 {
 	/**
-   * The table associated with the model.
-   *
-   * @var string
-   */
-  // protected $table = 'cat_libros';
+     * La tabla de la base de datos asociada al modelo.
+     *
+     * @var string
+     */
+    // protected $table = 'cat_libros';
 
-  /**
-   * Indicates if the model should be timestamped.
-   *
-   * @var bool
-   */
-  // public $timestamps = false;
+    /**
+     * Indica si el modelo debe tener columnas de tiemstamps.
+     *
+     * @var bool
+     */
+    // public $timestamps = false;
 
-  // public $primaryKey = 'ISBN';
+    // public $primaryKey = 'ISBN';
+
+    /**
+     * Define la relación de many to many con Persona.
+     *
+     * @return App\Persona
+     */
+    public function personas()
+    {
+        return $this->belongsToMany(
+            'App\Persona',
+            'persona_libro',
+            'id_libro',
+            'id_persona'
+        );
+    }
 }
