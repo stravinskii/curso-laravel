@@ -19,7 +19,7 @@
 			<!-- <th>ISBN</th> -->
 			<th>Título</th>
 			<th>Autor</th>
-			<th>Editorial</th>
+			<!-- <th>Personas</th> -->
 			<th></th>
 		</thead>
 		<tbody>
@@ -28,7 +28,7 @@
 					<!-- <td><?php echo $libro->ISBN ?></td> -->
 					<td><?php echo $libro->titulo ?></td>
 					<td><?php echo $libro->autor ?></td>
-					<td><?php echo $libro->editorial->nombre ?></td>
+					<!-- <td><?php echo $libro->personas->lists('nombre_completo') ?></td> -->
 					<td>
 						<!-- <a href="/admin/libros/<?php echo $libro->ISBN ?>"> -->
 						<a href="/admin/libros/<?php echo $libro->id ?>">

@@ -43,11 +43,15 @@ Route::group(['prefix' => 'admin'], function () {
     //     return "Esta es la sección de libros";
     // });
 
-    Route::get('/libros/search', 'RESTController@search');
-    
-    Route::resource('/libros', 'RESTController');
+    // Route::get('/usuarios', function() {
+    //     return "Esta es la sección de usuarios";
+    // });
 
-    Route::get('/usuarios', function() {
-        return "Esta es la sección de usuarios";
-    });
+    // Declaración de un controlador REST
+    Route::resource('/libros', 'LibrosController');
+    Route::get('/libros/search', 'LibrosController@search');
+
+    Route::resource('/personas', 'PersonasController');
+    Route::get('/personas/libros/{id}', 'PersonasController@agregarLibro');
+    Route::post('/personas/libros/{id}', 'PersonasController@actualizarLibros');
 });

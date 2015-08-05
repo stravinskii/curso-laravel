@@ -21,6 +21,16 @@ class Persona extends Model
     public $timestamps = false;
 
     /**
+     * Define la relación de uno a uno con Usuario
+     *
+     * @return App\Usuario
+     */
+    public function usuario()
+    {
+        return $this->hasOne('App\Usuario');
+    }
+
+    /**
      * Define la relación de many to many con Persona
      *
      * @return App\Persona

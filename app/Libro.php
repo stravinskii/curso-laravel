@@ -23,6 +23,16 @@ class Libro extends Model
     // public $primaryKey = 'ISBN';
 
     /**
+     * Define la relación uno a varios con el modelo Editorial
+     *
+     * @return App\Editorial
+     */
+    public function editorial()
+    {
+        return $this->belongsTo('App\Editorial');
+    }
+
+    /**
      * Define la relación de many to many con Persona.
      *
      * @return App\Persona

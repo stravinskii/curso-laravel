@@ -19,20 +19,6 @@
 			<?php echo $libro->autor ?>
 		</p>
 		<p>
-			<strong>Editorial: </strong>
-			<?php echo $libro->editorial->nombre ?>
-			<br>
-			<br>
-			<small>
-				Otros títulos:
-				<?php echo $libro->editorial->libros->lists('titulo') ?>
-			</small>
-		</p>
-		<p>
-			<strong>Personas: </strong>
-			<?php echo $libro->personas->lists('nombre_completo') ?>
-		</p>
-		<p>
 			<!-- <form action="/admin/libros/<?php echo $libro->ISBN ?>" method="POST"> -->
 			<form action="/admin/libros/<?php echo $libro->id ?>" method="POST">
 				<input type="hidden" name="_method" value="DELETE">
