@@ -7,6 +7,24 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+/**
+ * Este es un controlador RESTful (basado en la arquitectura REST)
+ * Los métodos aqui enlistados buscan manejar un recurso del sistema
+ *
+ * Este controlador se declara con el método resource de Route en routes.php
+ * Y en base a la ruta declarada en routes.php se sigue la siguiente convención
+ *
+ * URL                  |       Método HTTP     |   Método del controlador
+ *
+ * resource/                    GET                    index
+ * resource/create              GET                    create
+ * resource/                    POST                   store
+ * resource/{id}                GET                    show
+ * resource/{id}/edit           GET                    edit
+ * resource/{id}                PUT                    update
+ * resource/{id}                DELETE                 destroy
+ *
+ */
 class RESTController extends Controller
 {
     private $libros = [

@@ -43,9 +43,16 @@ Route::group(['prefix' => 'admin'], function () {
         return "Esta es la sección de libros";
     });
     
+    // Declaración de un controlador REST
     // Route::resource('/libros', 'RESTController');
 
     Route::get('/usuarios', function() {
         return "Esta es la sección de usuarios";
     });
 });
+
+// Declaración de un controlador implícito
+// Nota: El controlador implícito tiene una ruta base
+// Los nombres de los métodos en él, proveen las subrutas
+// De manera similar a como lo haría un grupo de rutas arriba
+Route::controller('/api', 'ImplicitController');

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Libros - Nuevo</title>
+	<title>Libros - <?php echo $libro['titulo'] ?></title>
 </head>
 <body>
 	<h4>Libro</h4>

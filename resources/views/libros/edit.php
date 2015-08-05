@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Libros - Nuevo</title>
+	<title>Libros - Editar</title>
 </head>
 <body>
-	<h4>Nuevo Libro</h4>
+	<h4>Editar Libro</h4>
 	<form action="/admin/libros/<?php echo $id ?>" method="POST">
 		<input type="hidden" name="_method" value="PUT">
 		<?php echo csrf_field() ?>
